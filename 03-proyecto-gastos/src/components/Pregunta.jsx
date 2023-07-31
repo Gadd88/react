@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Error from "./Error"
 
-const Pregunta = ({setPresupuesto, setRestante}) => {
+const Pregunta = ({setPresupuesto, setRestante, setMostrarPregunta}) => {
 
     //definir el state
     const [cantidad, setCantidad] = useState(0)
@@ -27,7 +27,7 @@ const Pregunta = ({setPresupuesto, setRestante}) => {
         setError(false)
         setPresupuesto(cantidad)
         setRestante(cantidad)
-
+        setMostrarPregunta(false)
     }
   return (
     <>
@@ -39,7 +39,7 @@ const Pregunta = ({setPresupuesto, setRestante}) => {
         }
         <form 
             action=""
-            onSubmit={definirPresupuesto}>
+            onSubmit={agregarPresupuesto}>
             <input 
                 type="number"
                 className="u-full-width"
