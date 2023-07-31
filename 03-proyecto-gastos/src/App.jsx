@@ -9,12 +9,12 @@ import ControlPresupuesto from "./components/ControlPresupuesto"
 function App() {
   
   //definir state
-  const [presupuesto, setPresupuesto] = useState(0)
-  const [restante, setRestante] = useState(0)
-  const [mostrarPregunta, setMostrarPregunta] = useState(true)
-  const [gastos, setGastos] = useState([])
-  const [gasto, setGasto] = useState({})
-  const [crearGasto, setCrearGasto] = useState(false)
+  const [presupuesto, setPresupuesto] = useState(0);
+  const [resto, setResto] = useState(0);
+  const [mostrarPregunta, setMostrarPregunta] = useState(true);
+  const [gastos, setGastos] = useState([]);
+  const [gasto, setGasto] = useState({});
+  const [crearGasto, setCrearGasto] = useState(false);
 
   //actualizar el restante
   useEffect(() => {
@@ -27,12 +27,12 @@ function App() {
     }
 
     //resta del presupuesto
-    const presupuestoRestante = restante - gasto.cantidad
-    setRestante(presupuestoRestante)
-    
+    let presupuestoRestante = resto - gasto.cantidad
+    setResto(presupuestoRestante)
+
     //resetear crearGasto
     setCrearGasto(false)
-  }, [gasto])
+  }, [gasto, gastos, resto, crearGasto])
   
   return (
     <>
@@ -44,7 +44,7 @@ function App() {
               mostrarPregunta 
                 ? (<Pregunta 
                     setPresupuesto={setPresupuesto}
-                    setRestante={setRestante}
+                    setResto={setResto}
                     setMostrarPregunta={setMostrarPregunta}
                     />)
                 : (
@@ -60,7 +60,7 @@ function App() {
                         />
                       <ControlPresupuesto
                         presupuesto={presupuesto}
-                        restante={restante}
+                        resto={resto}
                         />
                     </div>
                   </div>

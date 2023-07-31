@@ -1,21 +1,23 @@
 import { useState } from "react"
 import Error from "./Error"
+import PropTypes from 'prop-types'
 
-const Pregunta = ({setPresupuesto, setRestante, setMostrarPregunta}) => {
+
+const Pregunta = ({ setPresupuesto, setResto, setMostrarPregunta }) => {
+
+    Pregunta.propTypes = {
+        setPresupuesto: PropTypes.func,
+        setResto: PropTypes.func,
+        setMostrarPregunta: PropTypes.func
+    }
 
     //definir el state
     const [cantidad, setCantidad] = useState(0)
     const [error, setError] = useState(false)
 
-    //funcion que captura presupuesto
-    const definirPresupuesto = (e) =>{
-        let presupuesto = Number(e.target.value, 10);
-        setCantidad(presupuesto)
-    }
-
     //onsubmit
     const agregarPresupuesto = (e) =>{
-        e.preventDefault();
+        e.preventDefault()
 
         //validar
         if(cantidad < 1 || isNaN(cantidad)){
@@ -26,7 +28,7 @@ const Pregunta = ({setPresupuesto, setRestante, setMostrarPregunta}) => {
         //si pasa validacion
         setError(false)
         setPresupuesto(cantidad)
-        setRestante(cantidad)
+        setResto(cantidad)
         setMostrarPregunta(false)
     }
   return (
@@ -38,13 +40,12 @@ const Pregunta = ({setPresupuesto, setRestante, setMostrarPregunta}) => {
                 : null
         }
         <form 
-            action=""
             onSubmit={agregarPresupuesto}>
             <input 
                 type="number"
                 className="u-full-width"
                 placeholder="Coloca tu presupuesto" 
-                onChange={definirPresupuesto}
+                onChange={(e)=>setCantidad( parseInt(e.target.value, 10))}
                 />
             <input 
                 type="submit" 

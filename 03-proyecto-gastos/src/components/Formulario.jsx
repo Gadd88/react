@@ -1,8 +1,15 @@
 import {useState} from 'react'
 import Error from './Error'
 import shortId from 'shortid'
+import PropTypes from 'prop-types'
+
 
 const Formulario = ({setGasto, setCrearGasto}) => {
+
+    Formulario.propTypes = {
+        setGasto: PropTypes.func,
+        setCrearGasto: PropTypes.func
+    }
 
     const [nombreGasto, setNombreGasto] = useState('')
     const [cantidadGasto, setCantidadGasto] = useState(0)
@@ -50,7 +57,8 @@ const Formulario = ({setGasto, setCrearGasto}) => {
                 className='u-full-width'
                 placeholder='Ej. transporte'
                 value={nombreGasto}
-                onChange={(e)=>setNombreGasto(e.target.value)}/>
+                onChange={(e)=>setNombreGasto(e.target.value)}
+                autoFocus/>
         </div>
         <div className="campo">
             <label>Monto</label>
