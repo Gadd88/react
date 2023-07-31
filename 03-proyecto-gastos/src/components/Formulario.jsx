@@ -2,7 +2,7 @@ import {useState} from 'react'
 import Error from './Error'
 import shortId from 'shortid'
 
-const Formulario = ({agregarNuevoGasto}) => {
+const Formulario = ({setGasto, setCrearGasto}) => {
 
     const [nombreGasto, setNombreGasto] = useState('')
     const [cantidadGasto, setCantidadGasto] = useState(0)
@@ -26,7 +26,8 @@ const Formulario = ({agregarNuevoGasto}) => {
         }
         
         //pasar el gasto al componente
-        agregarNuevoGasto(gasto)
+        setGasto(gasto)
+        setCrearGasto(true)
 
         //resetear el form
         setNombreGasto('')

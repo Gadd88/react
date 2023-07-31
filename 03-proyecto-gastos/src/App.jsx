@@ -1,6 +1,9 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Pregunta from "./components/Pregunta"
 import Formulario from "./components/Formulario"
+import Listado from "./components/Listado"
+import ControlPresupuesto from "./components/ControlPresupuesto"
+
 
 
 function App() {
@@ -10,12 +13,27 @@ function App() {
   const [restante, setRestante] = useState(0)
   const [mostrarPregunta, setMostrarPregunta] = useState(true)
   const [gastos, setGastos] = useState([])
+  const [gasto, setGasto] = useState({})
+  const [crearGasto, setCrearGasto] = useState(false)
 
-  //cuando agreguemos nuevo gasto
-  const agregarNuevoGasto = (gasto) =>{
-    setGastos([...gastos, gasto])
-  }
+  //actualizar el restante
+  useEffect(() => {
+    //agrega el nuevo presupuesto
+    if(crearGasto){
+      setGastos([
+        ...gastos, 
+        gasto
+      ])
+    }
 
+    //resta del presupuesto
+    const presupuestoRestante = restante - gasto.cantidad
+    setRestante(presupuestoRestante)
+    
+    //resetear crearGasto
+    setCrearGasto(false)
+  }, [gasto])
+  
   return (
     <>
       <div className="container">
@@ -33,14 +51,17 @@ function App() {
                   <div className="row">
                     <div className="one-half column">
                       <Formulario 
-                        presupuesto={presupuesto}
-                        setPresupuesto={setPresupuesto}
-                        restante={restante}
-                        setRestante={setRestante}
-                        agregarNuevoGasto={agregarNuevoGasto}/>
+                        setGasto={setGasto}
+                        setCrearGasto={setCrearGasto}/>
                     </div>
                     <div className="one-half column">
-
+                      <Listado 
+                        gastos={gastos}
+                        />
+                      <ControlPresupuesto
+                        presupuesto={presupuesto}
+                        restante={restante}
+                        />
                     </div>
                   </div>
                 )
