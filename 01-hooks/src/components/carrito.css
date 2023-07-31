@@ -1,0 +1,15 @@
+.carrito{
+    position: fixed;
+    border: 1px solid white;
+    border-radius: 20px;
+    padding: 10px;
+    top: 5px;
+    right: 5px;
+    width: 300px;
+    background-color: #232323;
+}
+
+.carrito>ul{
+    list-style: none;
+    text-align: end;
+}
