@@ -12,6 +12,8 @@ const Contenedor = styled.div`
 const ContenedorForm = styled.div`
   background-color: #ffffff;
   padding: 3rem;
+  border-radius: 1rem;
+  opacity: .9;
 `
 
 function App() {
