@@ -110,7 +110,7 @@ const Form = ({setResumen, setCargando}) => {
             setCargando(false)
             //carga los datos
             setResumen({
-                cotizacion: resultado,
+                cotizacion: Number(resultado),
                 datos: datos
             })
         }, 2000)
