@@ -1,5 +1,7 @@
 import styled from '@emotion/styled'
 import { useState } from 'react'
+import { obtenerDiferencia, totalMarca, totalPlan } from '../helper'
+import PropTypes from 'prop-types'
 
 const Campo = styled.div`
     display: flex;
@@ -50,7 +52,12 @@ const Error = styled.div`
     border-radius: 1rem;
 `
 
-const Form = () => {
+const Form = ({setResumen, setCargando}) => {
+
+    Form.propTypes = {
+        setResumen: PropTypes.func,
+        setCargando: PropTypes.func
+    }
 
     const [datos, setDatos] = useState({
         marca:'',
@@ -79,13 +86,41 @@ const Form = () => {
             setError(true)
             return
         }
+        //valor inicial = 5000
+        let resultado = 5000;
 
         //obtener diferencia de años para modiicar el precio 3%
-        
+        const diferencia = obtenerDiferencia(year)
+
+        resultado -= ((diferencia * 3) * resultado) / 100;
+
         //americano +15% - asiatico +5% - europeo +30%
+        resultado += totalMarca(marca) * resultado;
 
         //basico +30% - completo +50%
+        resultado += totalPlan(plan) * resultado;
 
+        resultado = parseFloat(resultado).toFixed(2);
+
+        //muestra el spinner
+        setCargando(true)
+
+        setTimeout(() =>{
+            //quita el spinner
+            setCargando(false)
+            //carga los datos
+            setResumen({
+                cotizacion: resultado,
+                datos: datos
+            })
+        }, 2000)
+
+
+        setDatos({
+            marca:'',
+            year:'',
+            plan:''
+        })
 
     }
 
@@ -126,6 +161,8 @@ const Form = () => {
                 <option value="2019">2019</option>
                 <option value="2020">2020</option>
                 <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
             </Select>
         </Campo>
         <Campo>

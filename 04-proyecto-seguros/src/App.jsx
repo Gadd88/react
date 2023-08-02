@@ -3,6 +3,10 @@ import Header from "./components/Header"
 Header
 import styled from '@emotion/styled'
 import Form from "./components/Form"
+import Resumen from "./components/Resumen"
+import Resultado from "./components/Resultado"
+import Spinner from "./components/Spinner"
+
 
 const Contenedor = styled.div`
   max-width: 600px;
@@ -18,6 +22,20 @@ const ContenedorForm = styled.div`
 
 function App() {
   
+  const [resumen, setResumen] = useState({
+    cotizacion: 0,
+    datos: {
+      marca: '',
+      year: '',
+      plan: ''
+    }
+  })
+  
+  const [cargando, setCargando] = useState(false)
+  
+  const { cotizacion, datos } = resumen
+
+
 
   return (
     <Contenedor>
@@ -25,7 +43,19 @@ function App() {
         titulo='Cotizador de Seguros'
         />
       <ContenedorForm>
-        <Form />
+        <Form 
+          setResumen={setResumen}
+          setCargando={setCargando}/>
+          {
+            cargando ? <Spinner /> : null
+          }
+          
+        <Resumen
+          datos={datos}/>
+        {
+          !cargando ? <Resultado cotizacion={cotizacion}/> : null
+        }
+        
       </ContenedorForm>
     </Contenedor>
   )
