@@ -21,7 +21,7 @@ function App() {
     } else {
       localStorage.setItem('citas', JSON.stringify([]))
     }
-  }, [citas])
+  }, [citas,citasIniciales])
   
 
   //funcion para ir agregando citas
