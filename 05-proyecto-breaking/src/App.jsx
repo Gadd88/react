@@ -1,5 +1,7 @@
-import { useState } from 'react'
-import styled from 'style-components'
+import { useState, useEffect } from 'react'
+import styled from 'styled-components'
+import Frase from './components/Frase'
+import logo from './assets/logo.svg'
 
 function App() {
 
@@ -8,11 +10,18 @@ function App() {
   const consultarApi = async () =>{
     const api = await fetch('https://api.breakingbadquotes.xyz/v1/quotes')
     const frase = await api.json()
-    setFrase(frase)
+    setFrase(frase[0])
   }
+
+  useEffect(() => {
+    consultarApi()
+  }, [])
+  
 
   return (
     <Contenedor>
+      <img src={logo} alt="" />
+      <Frase frase={frase}/>
       <Boton
         onClick={consultarApi}
       > 
@@ -34,6 +43,11 @@ const Boton = styled.button`
   padding: 1rem 3rem;
   font-size: 2rem;
   border: 2px solid black;
+  transition: background-size .8s ease;
+  &:hover{
+    cursor: pointer;
+    background-size: 400px;
+  }
 `
 
 const Contenedor = styled.div`
