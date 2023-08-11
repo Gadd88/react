@@ -1,8 +1,6 @@
 import { useState } from "react"
 import 'materialize-css'
-
-
-
+import Error from "./Error"
 
 const Formulario = ({setBusqueda, busqueda, setConsulta}) => {
 
@@ -25,6 +23,7 @@ const Formulario = ({setBusqueda, busqueda, setConsulta}) => {
             return
         }
         setError(false)
+        setConsulta(true)
 
     }
 
@@ -32,9 +31,9 @@ const Formulario = ({setBusqueda, busqueda, setConsulta}) => {
     <form onSubmit={handleSubmit}>
         {
             error 
-                ? <p 
-                    className="red darken-4 error"
-                    >Todos los campos son obligatorios</p>
+                ? <Error 
+                    mensaje='Todos los campos son obligatorios'
+                    />
                 : null
         }
         <div className="input-field col s12">

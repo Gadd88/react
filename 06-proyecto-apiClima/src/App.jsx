@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import Clima from './components/Clima'
 import Formulario from './components/Formulario'
 import Header from './components/Header'
-
+import Error from './components/Error'
 
 
 function App() {
@@ -16,12 +17,45 @@ const {ciudad, pais} = busqueda
 
 const [consulta, setConsulta] = useState(false)
 
-useEffect(()=>{
-  if(consulta===true){
-    console.log(ciudad)
-  }
+const [resultado, setResultado] = useState({})
 
-},[ciudad,consulta])
+const [error, setError] = useState(false)
+
+useEffect(()=>{
+  const consultarApi = async() =>{
+    if(consulta){
+      const appId = '3653d5bce8c0ea0f4386f3db4f6f79ac'
+      //obtenemos lat y lon
+      const url = `http://api.openweathermap.org/geo/1.0/direct?q=${ciudad},${pais}&limit=1&appid=${appId}`
+      const respuesta = await fetch(url);
+      const resultado = await respuesta.json();
+      console.log(resultado);
+      //consultamos a la otra api usando lat y lon
+      const lat = resultado[0].lat;
+      const lon = resultado[0].lon;
+      const fetchClima = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appId}`)
+      const clima = await fetchClima.json();
+      
+      if(!clima){
+        setError(true)
+      }else{
+        setError(false)
+      }
+      setResultado(clima)
+      setConsulta(false)
+    }
+  }
+  consultarApi();
+
+},[consulta])
+
+let componente;
+if(error){
+  componente = <Error mensaje='No hay resultados'/>
+}else{
+  componente = <Clima resultado={resultado}/>
+}
+
 
   return (
     <> 
@@ -37,19 +71,18 @@ useEffect(()=>{
                 />
             </div>
             <div className="col m6 s12">
+              {componente}
             </div>
           </div>
         </div>
       </div>
-      {/* <Button>Presioname</Button> */}
+      <Button>Presioname</Button>
     </>
   )
 }
 
 export default App
 
-//apikey
-//https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid=3653d5bce8c0ea0f4386f3db4f6f79ac
 const Button = styled.button`
   min-width: 130px;
   height: 40px;
