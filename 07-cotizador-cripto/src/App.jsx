@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 import imagen from './assets/imagen.png'
 import Formulario from './components/Formulario'
 import axios from 'axios'
+import Cotizacion from './components/Cotizacion'
+
 
 const Contenedor = styled.div`
   max-width: 900px;
@@ -75,6 +77,9 @@ function App() {
         <Formulario
           setDivisa={setDivisa}
           setCripto={setCripto}
+          />
+        <Cotizacion
+          resultado={resultado}
           />
       </div>
     </Contenedor>
