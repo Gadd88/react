@@ -1,7 +1,8 @@
 import styled from '@emotion/styled'
+import { useState, useEffect } from 'react'
 import imagen from './assets/imagen.png'
 import Formulario from './components/Formulario'
-
+import axios from 'axios'
 
 const Contenedor = styled.div`
   max-width: 900px;
@@ -42,6 +43,25 @@ const Heading = styled.h1`
 
 function App() {
 
+  const [divisa, setDivisa] = useState('')
+  const [cripto, setCripto] = useState('')
+  const [resultado, setResultado] = useState({})
+
+  useEffect(() => {
+
+    const cotizarCripto = async () =>{
+      //validar form
+      if(divisa==='') return;
+      //consultar api
+      const url = `https://min-api.cryptocompare.com/data/pricemultifull?syms=${cripto}&tsyms=${divisa}`
+      const resultado = await axios.get(url)
+
+      console.log(resultado.data.DISPLAY[cripto][divisa])
+    }
+
+  }, [divisa, cripto])
+  
+
 
   return (
     <Contenedor>
@@ -52,7 +72,10 @@ function App() {
       </div>
       <div>
         <Heading>Cotiza criptomonedas al instante</Heading>
-        <Formulario/>
+        <Formulario
+          setDivisa={setDivisa}
+          setCripto={setCripto}
+          />
       </div>
     </Contenedor>
   )

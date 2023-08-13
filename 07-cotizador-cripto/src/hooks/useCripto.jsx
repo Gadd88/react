@@ -25,25 +25,25 @@ const Select = styled.select`
         background-color: #fff;
     }
 `
-const useMoneda = (label, stateInicial, MONEDAS) =>{
+const useCripto = (label, criptoInicial, listaCriptos) =>{
     //state
-    const [moneda, setMoneda] = useState(stateInicial);
+    const [cripto, setCripto] = useState(criptoInicial);
 
-    const SeleccionarMoneda = () => (
+    const SeleccionarCripto = () => (
         <>
             <Label>{label}</Label>
             <Select
-                onChange={e=>setMoneda(e.target.value)}
-                value={moneda}
+                onChange={e=>setCripto(e.target.value)}
+                value={cripto}
                 >
                     <option value="">Seleccione</option>
                 {
-                    MONEDAS.map(opcion => (
+                    listaCriptos.map(opcion => (
                         <option 
-                            key={opcion.codigo}
-                            value={opcion.nombre}
+                            key={opcion.CoinInfo.Id}
+                            value={opcion.CoinInfo.Name}
                         >
-                            {opcion.nombre}
+                            {opcion.CoinInfo.FullName}
                         </option>
                     ))
                 }
@@ -52,8 +52,7 @@ const useMoneda = (label, stateInicial, MONEDAS) =>{
     );
 
     //retornar state, interfaz y funcion modificadora
-    return [moneda, SeleccionarMoneda, setMoneda]
+    return [cripto, SeleccionarCripto, setCripto]
 }
 
-export default useMoneda;
-
+export default useCripto;
