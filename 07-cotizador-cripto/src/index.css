@@ -6,3 +6,11 @@
   background-color: #120e3b;
 }
 
+label::after{
+  content:'';
+  width: 100px;
+  height: 3px;
+  background-color: #66a2fe;
+  margin-top: 4px;
+  display: block;
+}
