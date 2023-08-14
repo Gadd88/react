@@ -41,7 +41,7 @@ const useMoneda = (label, stateInicial, MONEDAS) =>{
                     MONEDAS.map(opcion => (
                         <option 
                             key={opcion.codigo}
-                            value={opcion.nombre}
+                            value={opcion.codigo}
                         >
                             {opcion.nombre}
                         </option>

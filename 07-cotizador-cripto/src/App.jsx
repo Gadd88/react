@@ -55,11 +55,12 @@ function App() {
       //validar form
       if(divisa==='') return;
       //consultar api
-      const url = `https://min-api.cryptocompare.com/data/pricemultifull?syms=${cripto}&tsyms=${divisa}`
+      const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${cripto}&tsyms=${divisa}&api_key=38082f3373d504352ee503eae6e0d38d3ad3652f38c8d202e4315e6d4c5edd48`
       const resultado = await axios.get(url)
 
-      console.log(resultado.data.DISPLAY[cripto][divisa])
+      setResultado(resultado.data.DISPLAY[cripto][divisa])
     }
+    cotizarCripto()
 
   }, [divisa, cripto])
   
