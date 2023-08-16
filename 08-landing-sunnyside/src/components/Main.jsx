@@ -1,5 +1,5 @@
-import header_mobile from '../../public/images/mobile/image-header.jpg'
-import header_desk from '../../public/images/desktop/image-header.jpg'
+import header_mobile from '../../src/assets/images/mobile/image-header.jpg'
+import header_desk from '../../src/assets/images/desktop/image-header.jpg'
 
 
 

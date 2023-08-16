@@ -1,4 +1,4 @@
-import burguer from '../../public/images/icon-hamburger.svg'
+import burguer from '../../src/assets/images/icon-hamburger.svg'
 import { useState } from 'react'
 
 const Navbar = () => {
