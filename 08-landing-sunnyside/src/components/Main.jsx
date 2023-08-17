@@ -8,7 +8,6 @@ const Main = () => {
 
   return (
     <main>
-        
         <picture>
             <source media='(max-width:640px)' srcSet={header_mobile}/>
             <source media='(min-width:641px)' srcSet={header_desk}/>
@@ -17,6 +16,7 @@ const Main = () => {
         <picture className='absolute top-[45%] left-[50%]'>
           <img src={arrow} alt="" />
         </picture>
+
     </main>
   )
 }
