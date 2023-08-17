@@ -3,7 +3,10 @@ import coup from '../../src/assets/images/desktop/image-stand-out.jpg'
 import berry from '../../src/assets/images/desktop/image-graphic-design.jpg'
 import orange from '../../src/assets/images/desktop/image-photography.jpg'
 import Testimonials from './Testimonials'
-
+import cone_desk from '../../src/assets/images/desktop/image-gallery-cone.jpg'
+import milk_desk from '../../src/assets/images/desktop/image-gallery-milkbottles.jpg'
+import orange_desk from '../../src/assets/images/desktop/image-gallery-orange.jpg'
+import sugar_desk from '../../src/assets/images/desktop/image-gallery-sugarcubes.jpg'
 
 const Body = () => {
   return (
@@ -58,6 +61,12 @@ const Body = () => {
                     </p>
                 </div>
             </div>
+        </div>
+        <div className="row4 w-full grid grid-cols-4">
+            <img src={cone_desk} alt="" />
+            <img src={milk_desk} alt="" />
+            <img src={orange_desk} alt="" />
+            <img src={sugar_desk} alt="" />
         </div>
         <Testimonials/>
     </section>
