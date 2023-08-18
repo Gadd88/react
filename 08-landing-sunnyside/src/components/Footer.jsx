@@ -16,10 +16,10 @@ const Footer = () => {
             </ul>
         </nav>
         <div className="socials flex gap-5 mt-5">
-            <img src={facebook} alt="facebook" className='cursor-pointer hover:fill-white'/>
-            <img src={instagram} alt="instagram" className='cursor-pointer hover:fill-white'/>
-            <img src={twitter} alt="twitter" className='cursor-pointer hover:fill-white'/>
-            <img src={pinterest} alt="pinterest" className='cursor-pointer hover:fill-white'/>
+            <img src={facebook} alt="facebook" className='cursor-pointer hover:fill-white transition-all duration-200 hover:scale-125'/>
+            <img src={instagram} alt="instagram" className='cursor-pointer hover:fill-white transition-all duration-200 hover:scale-125'/>
+            <img src={twitter} alt="twitter" className='cursor-pointer hover:fill-white transition-all duration-200 hover:scale-125'/>
+            <img src={pinterest} alt="pinterest" className='cursor-pointer hover:fill-white transition-all duration-200 hover:scale-125'/>
         </div>
     </footer>
   )

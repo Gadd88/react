@@ -6,11 +6,11 @@ import Testimon from './Testimon'
 
 const Testimonials = () => {
   return (
-    <section className="flex flex-col text-center p-28 font-barlow text-[14px] text-very-dark-grayish-blue">
+    <section className="flex flex-col text-center p-15 sm:p-10 md:p-5 font-barlow text-[14px] text-very-dark-grayish-blue">
         <h2 className='text-xl text-very-dark-grayish-blue font-fraunces mb-10'>
             Client Testimonials
         </h2>
-        <div className="testimonials grid grid-cols-3">
+        <div className="testimonials grid grid-cols-1 sm:grid-cols-3">
             <Testimon 
                 name='Emily R.' 
                 position='Marketing Director' 

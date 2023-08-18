@@ -20,8 +20,8 @@ const Navbar = () => {
             <li className='cursor-pointer transition-all duration-300 hover:scale-125'>Projects</li>
             <li className='cursor-pointer bg-yellow w-[140px] h-[56px] grid place-content-center rounded-full uppercase font-fraunces text-very-dark-desaturated-blue sm:bg-white sm:w-[100px] sm:h-[40px] hover:bg-yellow'>Contact</li>
         </ul>
-        <div>
-            <img src={burguer} alt="menu" className='cursor-pointer sm:hidden' onClick={handleClick}/>
+        <div className='flex justify-end'>
+            <img src={burguer} alt="menu" className='cursor-pointer sm:hidden relative' onClick={handleClick}/>
         </div>
     </nav>
   )

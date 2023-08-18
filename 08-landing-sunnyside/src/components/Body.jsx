@@ -7,8 +7,8 @@ import cone_desk from '../../src/assets/images/desktop/image-gallery-cone.jpg'
 import milk_desk from '../../src/assets/images/desktop/image-gallery-milkbottles.jpg'
 import orange_desk from '../../src/assets/images/desktop/image-gallery-orange.jpg'
 import sugar_desk from '../../src/assets/images/desktop/image-gallery-sugarcubes.jpg'
-import BodyRow from '../../../04-proyecto-seguros/src/components/BodyRow'
-import BodyRow2 from '../../../04-proyecto-seguros/src/components/BodyRow2'
+import BodyRow from './BodyRow'
+import BodyRow2 from './BodyRow2'
 
 
 const Body = () => {
@@ -19,16 +19,20 @@ const Body = () => {
                 title='Transform your brand'
                 text='We are a full-service creative agency specializing in helping brands grow fast. 
                 Engage your clients through compelling visuals that do most of the marketing for you.'
-                img={egg}/>
+                img={egg}
+                color='yellow'
+                />
         </div>
         <div className="w-full flex flex-row-reverse">
             <BodyRow 
                 title='Stand out to the right audience'
                 text='Using a collaborative formula of designers, researchers, photographers, videographers, and copywriters, we’ll build and extend your brand in digital places.'
                 img={coup}
+                color='soft-red'
+                reverse='row-reverse'
                 />
         </div>
-        <div className="w-full flex">
+        <div className="w-full flex flex-col sm:flex-row">
             <BodyRow2
                 title='Graphic design'
                 text='Great design makes you memorable. We deliver artwork that underscores your brand message and captures potential clients’ attention.'
@@ -38,7 +42,7 @@ const Body = () => {
                 text='Increase your credibility by getting the most stunning, high-quality photos that improve your business image.'
                 img={orange}/>
         </div>
-        <div className="row4 w-full grid grid-cols-4">
+        <div className="row4 w-full grid grid-cols-2 sm:grid-cols-4">
             <img src={cone_desk} alt="" />
             <img src={milk_desk} alt="" />
             <img src={orange_desk} alt="" />
