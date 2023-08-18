@@ -20,16 +20,17 @@ const Body = () => {
                 text='We are a full-service creative agency specializing in helping brands grow fast. 
                 Engage your clients through compelling visuals that do most of the marketing for you.'
                 img={egg}
-                color='yellow'
+                color='bg-yellow'
+                flex='flex-row'
                 />
         </div>
-        <div className="w-full flex flex-row-reverse">
+        <div className="w-full flex">
             <BodyRow 
                 title='Stand out to the right audience'
                 text='Using a collaborative formula of designers, researchers, photographers, videographers, and copywriters, we’ll build and extend your brand in digital places.'
                 img={coup}
-                color='soft-red'
-                reverse='row-reverse'
+                color='bg-soft-red'
+                flex='flex-row-reverse'
                 />
         </div>
         <div className="w-full flex flex-col sm:flex-row">
