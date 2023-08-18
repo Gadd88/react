@@ -21,6 +21,7 @@ const Footer = () => {
             <img src={twitter} alt="twitter" className='cursor-pointer hover:fill-white transition-all duration-200 hover:scale-125'/>
             <img src={pinterest} alt="pinterest" className='cursor-pointer hover:fill-white transition-all duration-200 hover:scale-125'/>
         </div>
+        <p>Matias Saade &copy; 2023</p>
     </footer>
   )
 }
