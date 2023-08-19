@@ -1,14 +1,15 @@
 
-const ListaNoticias = (data) => {
+const ListaNoticias = ({noticias}) => {
   return (
     <div>
         <ul>
             {
-                data.length>0 ?
-                data.map( item => (
-                    <li key={item.source.id}>
-                        <h2>{item.source.name}</h2>
-                        <p>{item.source.description}</p>
+                noticias ?
+                noticias.map( noticia => (
+                    <li key={noticia.source.id}>
+                        <h2>{noticia.title}</h2>
+                        <a href={noticia.url}>Ver nota completa</a>
+                        <p>{noticia.author}</p>
                     </li>
                 ))
                 : null
