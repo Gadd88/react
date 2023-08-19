@@ -1,20 +1,36 @@
+
 import styles from './Formulario.module.css'
-import useSelect from './hooks/useSelect'
+import useSelect from '../hooks/useSelect'
 
-const Formulario = () => {
+const Formulario = ({setCategoria}) => {
 
-    const [categoria, SelectNoticias] = useSelect();
+    const OPCIONES = [
+        {value: 'general', label: 'General'},
+        {value: 'business', label: 'Negocios'},
+        {value: 'entertainment', label: 'Entretenimiento'},
+        {value: 'health', label: 'Salud'},
+        {value: 'science', label: 'Ciencia'},
+        {value: 'sports', label: 'Deportes'},
+        {value: 'technology', label: 'Tecnología'}
+    ]
+
+    const [categoria, SelectNoticias] = useSelect('general', OPCIONES);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setCategoria(categoria)
+    }
 
   return (
     <div className={`${styles.buscador} row`}>
         <div className="col s12 m8 offset-m2">
-            <form action="">
-                <h2 
-                    className={styles.heading}
-                    >
+            <form 
+                onSubmit={handleSubmit}
+                >
+                <h2 className={styles.heading}>
                     Encuentra Noticias por Categoría
                 </h2>
-                <SelectNoticias/>
+                <SelectNoticias />
                 <div className="input-field col s12">
                     <input 
                         type="submit"
