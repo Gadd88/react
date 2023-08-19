@@ -1,3 +1,4 @@
+import Formulario from "./components/Formulario"
 import Header from "./components/Header"
 
 
@@ -9,7 +10,7 @@ function App() {
         titulo='Buscador de Noticias'
         />
       <div className="container white">
-        <h1>Formulario</h1>
+        <Formulario/>
       </div>
     </>
   )
