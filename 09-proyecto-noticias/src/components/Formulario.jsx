@@ -14,6 +14,17 @@ const Formulario = ({setCategoria}) => {
         {value: 'technology', label: 'Tecnología'}
     ]
 
+    // const PAISES = [
+    //     {value: 'ar', label: 'Argentina'},
+    //     {value: 'mx', label: 'México'},
+    //     {value: 'ur', label: 'Uruguay'},
+    //     {value: 'cl', label: 'Chile'},
+    //     {value: 'co', label: 'Colombia'},
+    //     {value: 'cn', label: 'China'},
+    //     {value: 'ch', label: 'Suiza'},
+    //     {value: 'ru', label: 'Rusia'}
+    // ]
+
     const [categoria, SelectNoticias] = useSelect('general', OPCIONES);
 
     const handleSubmit = (e) => {

@@ -8,14 +8,14 @@ function App() {
   
   const [categoria, setCategoria] = useState('')
   const [noticias, setNoticias] = useState([])
+  const [pais, setPais] = useState('')
 
   useEffect(() => {
     const consultarApi = async () =>{
-      const url = `https://newsapi.org/v2/top-headlines?country=ar&category=${categoria}&apiKey=5bd1577b0a914e63adaca2cafd488ea8`
+      const url = `https://newsapi.org/v2/top-headlines?country=${pais? pais : 'ar'}&category=${categoria}&apiKey=5bd1577b0a914e63adaca2cafd488ea8`
       const response = await fetch(url)
       const notis = await response.json();
       setNoticias(notis.articles)
-      console.log(noticias)
     }
     consultarApi()
 
@@ -30,7 +30,10 @@ function App() {
         titulo='Buscador de Noticias'
         />
       <div className="container white">
-        <Formulario setCategoria={setCategoria}/>
+        <Formulario 
+          setCategoria={setCategoria}
+          setPais={setPais}
+          />
         <ListaNoticias noticias={noticias}/>
       </div>
     </>

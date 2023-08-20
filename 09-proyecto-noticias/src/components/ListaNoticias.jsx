@@ -1,20 +1,17 @@
+import Noticia from './Noticia'
 
 const ListaNoticias = ({noticias}) => {
   return (
-    <div>
-        <ul>
+    <div className="row">
             {
                 noticias ?
                 noticias.map( noticia => (
-                    <li key={noticia.source.id}>
-                        <h2>{noticia.title}</h2>
-                        <a href={noticia.url}>Ver nota completa</a>
-                        <p>{noticia.author}</p>
-                    </li>
+                    <Noticia
+                        key={noticia.url}
+                        noticia={noticia}/>
                 ))
                 : null
             }
-        </ul>
     </div>
   )
 }
