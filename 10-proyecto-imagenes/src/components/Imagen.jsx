@@ -1,6 +1,6 @@
 
 const Imagen = ({imagen}) => {
-    const { largeImageUrl, likes, previewURL, tags, views } = imagen
+    const { largeImageURL, likes, previewURL, tags, views } = imagen
   return (
     <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
         <div className="card">
@@ -16,7 +16,7 @@ const Imagen = ({imagen}) => {
             </div>
             <div className="card-footer">
                 <a 
-                    href={largeImageUrl}
+                    href={largeImageURL}
                     target='_blank'
                     rel='noopener noreferrer'
                     className="btn btn-info btn-block">Ver Imagen</a>
