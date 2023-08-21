@@ -5,6 +5,7 @@ import ListadoImagenes from './components/ListadoImagenes'
 
 function App() {
   const [busqueda, setBusqueda] = useState('')
+  const [imagenes, setImagenes] = useState([])
 
   useEffect(() => {
     
@@ -20,11 +21,9 @@ function App() {
       const respuesta = await fetch(url);
 
       const resultado = await respuesta.json();
-      console.log(resultado.hits)
+      setImagenes(resultado.hits)
     }
     consultaApi();
-    
-
   }, [busqueda])
   
 
@@ -37,8 +36,9 @@ function App() {
         <Formulario
           setBusqueda={setBusqueda}/>
       </div>
-      <div>
-        <ListadoImagenes  />
+      <div className='row justify-content-center'>
+        <ListadoImagenes  
+          imagenes={imagenes}/>
       </div>
     </div>
   )
