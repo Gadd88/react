@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Error from './Error'
 
-const Formulario = ({setBusqueda}) => {
+const Formulario = ({setBusqueda, setPaginaActual}) => {
 
     const [parametro, setParametro] = useState('')
     const [error, setError] = useState(false)
@@ -15,6 +15,7 @@ const Formulario = ({setBusqueda}) => {
         }
         setError(false)
         setBusqueda(parametro.trim())
+        setPaginaActual(1)
     }
   return (
     <form

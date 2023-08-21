@@ -12,38 +12,38 @@ function App() {
   useEffect(() => {
     
     const consultaApi = async () => {
+      //validacion
       if(busqueda==='') return;
 
       const imgPorPag = 20;
-
       const api_key = '38956509-c0ee7542ad12c99f03848dd3b';
-
-      const url = `https://pixabay.com/api/?key=${api_key}&q=${busqueda}&per_page=${imgPorPag}`;
-
+      const url = `https://pixabay.com/api/?key=${api_key}&q=${busqueda}&per_page=${imgPorPag}&page=${paginaActual}`;
       const respuesta = await fetch(url);
-
       const resultado = await respuesta.json();
-      console.log(resultado)
+      //cargamos resultado a estado
       setImagenes(resultado.hits)
+
       //calcular paginacion
       const calcularPaginas = Math.ceil(resultado.totalHits / imgPorPag);
       setTotalPaginas(calcularPaginas)
+      //volver al top
+      const jumbotron = document.querySelector('.jumbotron');
+      jumbotron.scrollIntoView({behavior:'smooth'})
     }
     consultaApi();
-  }, [busqueda])
+  }, [busqueda, paginaActual])
 
   const paginaAnterior = () =>{
     const nuevaPaginaActual = paginaActual - 1;
-
+    //validacion
     if(nuevaPaginaActual === 0) return;
-
     setPaginaActual(nuevaPaginaActual);
   }
 
   const paginaSiguiente = () =>{
     const nuevaPaginaActual = paginaActual + 1;
-
-    if(nuevaPaginaActual >= totalPaginas) return;
+    //validacion
+    if(nuevaPaginaActual > totalPaginas) return;
     setPaginaActual(nuevaPaginaActual)
   }
 
@@ -54,26 +54,41 @@ function App() {
           Buscador de imágenes
         </p>
         <Formulario
-          setBusqueda={setBusqueda}/>
+          setBusqueda={setBusqueda}
+          setPaginaActual={setPaginaActual}/>
       </div>
       <div className='row justify-content-center'>
         <ListadoImagenes  
           imagenes={imagenes}/>
-        <button
-          type='button'
-          className='btn btn-info mr-1'
-          onClick={paginaAnterior}>&laquo; Anterior</button>
-        <button
-          type='button'
-          className='btn btn-info mr-1'
-          onClick={paginaSiguiente}>Siguiente &laquo;</button>
+        
+        {
+          (paginaActual===1)
+            ? null
+            : (<button
+                  type='button'
+                  className='bbtn btn-info mr-1 mb-2'
+                  style={{width:'150px'}}
+                  onClick={paginaAnterior}>&laquo; Anterior</button>)
+        }
+        {
+          imagenes.length > 0
+            ? (<p className='text-center'>
+                Página: {paginaActual} de {totalPaginas} Páginas
+              </p>)
+            : null
+        }
+        {
+          (paginaActual === totalPaginas)
+            ? null
+            :(<button
+                type='button'
+                className='bbtn btn-info mb-2'
+                style={{width:'150px'}}
+                onClick={paginaSiguiente}>Siguiente &raquo;</button>)
+        }
       </div>
       
     </div>
   )
 }
-
 export default App
-
-//
-//const url = `https://pixabay.com/api/?key=${api_key}&q=${busqueda}&image_type=photo`;
