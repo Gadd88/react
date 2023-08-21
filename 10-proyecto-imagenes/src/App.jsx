@@ -1,9 +1,31 @@
 import 'bootswatch/dist/yeti/bootstrap.min.css'
+import { useState, useEffect } from 'react'
 import Formulario from './components/Formulario'
-
-
+import ListadoImagenes from './components/ListadoImagenes'
 
 function App() {
+  const [busqueda, setBusqueda] = useState('')
+
+  useEffect(() => {
+    
+    const consultaApi = async () => {
+      if(busqueda==='') return;
+
+      const imgPorPag = 20;
+
+      const api_key = '38956509-c0ee7542ad12c99f03848dd3b';
+
+      const url = `https://pixabay.com/api/?key=${api_key}&q=${busqueda}&per_page=${imgPorPag}`;
+
+      const respuesta = await fetch(url);
+
+      const resultado = await respuesta.json();
+      console.log(resultado.hits)
+    }
+    consultaApi();
+    
+
+  }, [busqueda])
   
 
   return (
@@ -12,7 +34,11 @@ function App() {
         <p className="lead text-center">
           Buscador de imágenes
         </p>
-        <Formulario/>
+        <Formulario
+          setBusqueda={setBusqueda}/>
+      </div>
+      <div>
+        <ListadoImagenes  />
       </div>
     </div>
   )
@@ -20,5 +46,5 @@ function App() {
 
 export default App
 
-//const api_key = '38956509-c0ee7542ad12c99f03848dd3b'
-//const URL = `https://pixabay.com/api/?key=${api_key}&q=${parametro}&image_type=photo`
+//
+//const url = `https://pixabay.com/api/?key=${api_key}&q=${busqueda}&image_type=photo`;
