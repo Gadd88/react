@@ -23,6 +23,7 @@ legend {
   margin: 0;
   margin-bottom: 40px;
   font-family: 'Work Sans', sans-serif;
+  cursor: default;
 }
 
 legend::before {
