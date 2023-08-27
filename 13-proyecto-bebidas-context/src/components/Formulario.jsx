@@ -1,6 +1,12 @@
+import { useContext } from "react"
+import { CategoriasContext } from "../context/CategoriasContext"
+
 
 
 const Formulario = () => {
+
+    const { props } = useContext(CategoriasContext)
+
   return (
     <form>
         <fieldset className="text-center">
