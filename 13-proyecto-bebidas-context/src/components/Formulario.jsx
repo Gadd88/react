@@ -5,8 +5,11 @@ import { CategoriasContext } from "../context/CategoriasContext"
 
 const Formulario = () => {
 
-    const { props } = useContext(CategoriasContext)
+    const { categorias } = useContext(CategoriasContext)
 
+    const selectCategoria = (e) => {
+        console.log(e.target.value)
+    }
   return (
     <form>
         <fieldset className="text-center">
@@ -23,8 +26,19 @@ const Formulario = () => {
             <div className="col-md-4">
                 <select 
                     name="categoria"
-                    className="form-control">
+                    className="form-control"
+                    onChange={selectCategoria}>
                         <option value="">Selecciona categoria</option>
+                        {
+                            categorias.map(categoria=>(
+                                <option
+                                    key={categorias.strCategory} 
+                                    value={categoria.strCategory}
+                                    >
+                                        {categoria.strCategory}
+                                </option>
+                            ))
+                        }
                 </select>
             </div>
             <div className="col-md-4">
