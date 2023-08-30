@@ -3,7 +3,7 @@ import Header from "./components/Header"
 import ListadoRecetas from "./components/ListadoRecetas"
 import CategoriasProvider from "./context/CategoriasContext"
 import RecetasProvider from "./context/RecetasContext"
-
+import ModalProvider from "./context/ModalContext"
 
 
 function App() {
@@ -17,7 +17,9 @@ function App() {
             <Formulario />
           </div>
           <div className="row">
-            <ListadoRecetas/>
+            <ModalProvider>
+              <ListadoRecetas/>
+            </ModalProvider>
           </div>
         </div>
       </RecetasProvider>
