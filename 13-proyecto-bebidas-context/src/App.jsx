@@ -1,6 +1,6 @@
 import Formulario from "./components/Formulario"
 import Header from "./components/Header"
-import Recetas from "./components/Recetas"
+import ListadoRecetas from "./components/ListadoRecetas"
 import CategoriasProvider from "./context/CategoriasContext"
 import RecetasProvider from "./context/RecetasContext"
 
@@ -17,7 +17,7 @@ function App() {
             <Formulario />
           </div>
           <div className="row">
-            <Recetas/>
+            <ListadoRecetas/>
           </div>
         </div>
       </RecetasProvider>
