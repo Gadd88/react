@@ -10,6 +10,8 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
+    height: 600,
+    overflow: 'auto',
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -17,13 +19,27 @@ const style = {
 };
 
 const ModalBox = ({open, setOpen}) => {
-    
 
-    const handleClose = () => setOpen(false)
+    const {modalInfo, setIdReceta, setModalInfo} = useContext(ModalContext)    
+    const {strDrink, strDrinkThumb, strInstructions, strIngredient, strMeasure} = modalInfo
 
-    const {modalInfo} = useContext(ModalContext)
+    const handleClose = () => {
+        setOpen(false)
+        setIdReceta(null)
+        setModalInfo({})
+    }
 
-    const {strDrink, strDrinkThumb, strInstructions} = modalInfo
+    const mostrarIngredientes = (modalInfo) => {
+        let ingredientes = [];
+        for (let i = 1; i < 16; i++) {
+            if(modalInfo[`strIngredient${i}`]){
+                ingredientes.push(
+                    <li> {modalInfo[`strIngredient${i}`]}: {modalInfo[`strMeasure${i}`]}</li>
+                )
+            }
+        }
+        return ingredientes
+    }
 
     return (
         <Modal
@@ -40,9 +56,11 @@ const ModalBox = ({open, setOpen}) => {
                     >
                     {strDrink}
                 </Typography>
+                <h3 className="mt-4">Instrucciones</h3>
+                <p>{strInstructions}</p>
                 <img 
                     src={strDrinkThumb}
-                    className='card-img-top'
+                    className='img-fluid my-4'
                     alt={`Imagen de ${strDrink}`}
                     style={{objectFit:'contain'}} 
                 />
@@ -50,7 +68,12 @@ const ModalBox = ({open, setOpen}) => {
                     id="modal-modal-description" 
                     sx={{ mt: 2 }}
                     >
-                    {strInstructions}
+                    <h3>Ingredientes y cantidades</h3>
+                    <ul style={{listStyle:'none'}}>
+                        {
+                            mostrarIngredientes(modalInfo)
+                        }
+                    </ul>
                 </Typography>
             </Box>
         </Modal>
